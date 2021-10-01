@@ -128,7 +128,7 @@
 </head>
 <body onresize="resize()">
     <div id="main">
-        <video class="video" id="video" src="http://5.38.164.192:8888/movie.mp4">
+        <video class="video" id="video" src="">
 
         </video>
         <div id="bottom">
@@ -207,7 +207,7 @@
                 socket.emit("setTime", VideoDOM.currentTime)
                 ChangeVideoStatusIcons()
             }else{
-                socket.emit("getTimeFromServer")
+                socket.emit("getTimeFromServer", 0.5)
                 socket.emit("getStatusFromServer")
                 synced = true
                 ChangeVideoStatusIcons()

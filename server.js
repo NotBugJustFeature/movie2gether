@@ -1,7 +1,4 @@
-const { createWebSocketStream } = require("ws");
-
-const   client      =   require("engine.io-client"),
-        express     =   require("express"),
+const   express     =   require("express"),
         app         =   express(),
         port        =   3000,
         server      =   require("http").createServer(app),
@@ -39,7 +36,9 @@ io.on("connection", (socket) => {
         }
         if(debug)console.log("a client disconnected")
         console.log("i :"+i)
-        if(i==1) /*console.log("primary exit")*/ {socket2.id = clients[0]; socket2.emit("setPrimary");}
+        if(clients.length > 0) {
+            console.log("primary exit"); socket2.id = clients[0]; socket2.emit("setPrimary");
+        }
     })
 
     socket.on('getStatus', (status) => {
